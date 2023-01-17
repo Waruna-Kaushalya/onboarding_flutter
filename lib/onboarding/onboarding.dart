@@ -186,7 +186,7 @@ class StringConstant {
   static const String image1 = 'assets/images/hola.png';
   static const String title1 = "Global Translation";
   static const String description1 =
-      "Translate in 100+ online & 56 offline languages.";
+      "Translate in 100+ online & 50+ offline languages.";
 
   static const String image2 = 'assets/images/speech_to_text.png';
   static const String title2 = "Fluent Communication";
@@ -310,10 +310,10 @@ class LiquidSwipePagesWidget extends StatelessWidget {
           ),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 50,
                 ),
                 SizedBox(
                   // height: 500,
@@ -327,7 +327,7 @@ class LiquidSwipePagesWidget extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
+                    horizontal: 20,
                   ),
                   child: Column(
                     children: [
@@ -337,7 +337,7 @@ class LiquidSwipePagesWidget extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.5,
-                          fontSize: 25,
+                          fontSize: 28,
                           color: Colors.white,
                         ),
                       ),
@@ -350,7 +350,7 @@ class LiquidSwipePagesWidget extends StatelessWidget {
                         style: const TextStyle(
                           // fontWeight: FontWeight.w600,
                           letterSpacing: 0.5,
-                          fontSize: 15,
+                          fontSize: 18,
                           color: Colors.white,
                         ),
                       )
