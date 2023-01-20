@@ -39,12 +39,12 @@ class StringConstant {
   static const String image1 = 'assets/images/1.png';
   static const String title1 = "Global Translation";
   static const String description1 =
-      "Translate in 100+ online & 50+ offline languages.";
+      "Translate in 100+ online & 50+ offline languages";
 
   static const String image2 = 'assets/images/2.png';
   static const String title2 = "Fluent Communication";
   static const String description2 =
-      "Seamless convosation with natural-sounding voices.";
+      "Seamless convosation with natural-sounding voices";
 
   static const String image3 = 'assets/images/3.png';
   static const String title3 = "Snap and Translate";
