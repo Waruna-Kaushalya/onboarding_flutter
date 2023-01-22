@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/animate.dart';
 import 'package:flutter_animate/effects/effects.dart';
 import 'package:flutter_animate/extensions/extensions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BubbleImageWidget extends StatelessWidget {
   const BubbleImageWidget({
@@ -16,7 +17,7 @@ class BubbleImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width * widthPercentage,
+      width: widthPercentage.w,
       child: Image.asset(
         'assets/images/bub$imageNumber.png',
         fit: BoxFit.fitWidth,
@@ -34,7 +35,7 @@ class Bub9Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 9,
-      widthPercentage: 0.4,
+      widthPercentage: 250,
     ).animate().move(
           begin: const Offset(
             0,
@@ -57,7 +58,7 @@ class Bub8Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 8,
-      widthPercentage: 0.4,
+      widthPercentage: 250,
     ).animate().move(
           begin: const Offset(
             0,
@@ -80,7 +81,7 @@ class Bub7Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 7,
-      widthPercentage: 0.5,
+      widthPercentage: 320,
     ).animate().move(
           begin: const Offset(
             0,
@@ -103,7 +104,7 @@ class Bub6Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 6,
-      widthPercentage: 0.4,
+      widthPercentage: 240,
     ).animate().move(
           begin: const Offset(
             0,
@@ -126,7 +127,7 @@ class Bub5Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 5,
-      widthPercentage: 0.4,
+      widthPercentage: 260,
     )
         .animate()
         .fadeIn(
@@ -155,7 +156,7 @@ class Bub4Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 4,
-      widthPercentage: 0.4,
+      widthPercentage: 260,
     ).animate().move(
           begin: const Offset(
             0,
@@ -178,7 +179,7 @@ class Bub3Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 3,
-      widthPercentage: 0.25,
+      widthPercentage: 180,
     ).animate().move(
           begin: const Offset(
             0,
@@ -201,7 +202,7 @@ class Bub2Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 2,
-      widthPercentage: 0.3,
+      widthPercentage: 200,
     ).animate().move(
           begin: const Offset(
             0,
@@ -224,7 +225,7 @@ class Bub1Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const BubbleImageWidget(
       imageNumber: 1,
-      widthPercentage: 0.3,
+      widthPercentage: 200,
     ).animate().move(
           begin: const Offset(
             0,

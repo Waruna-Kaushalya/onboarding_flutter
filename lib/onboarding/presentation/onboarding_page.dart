@@ -6,10 +6,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_animate/animate.dart';
 import 'package:flutter_animate/effects/effects.dart';
 import 'package:flutter_animate/extensions/extensions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../ui_data_class/onboarding_data.dart';
-import '../widgets/bubble_widgets.dart';
+import 'onboarding_data.dart';
+import 'bubble_widgets.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
@@ -95,147 +96,151 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 1, 34, 50),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: [
-                CarouselSlider(
-                  carouselController: _controller,
-                  options: CarouselOptions(
-                    scrollDirection: Axis.horizontal,
-                    viewportFraction: 1.0,
-                    enlargeCenterPage: false,
-                    enableInfiniteScroll: false,
-                    scrollPhysics: const ClampingScrollPhysics(),
-                    height: MediaQuery.of(context).size.height * 0.9,
-                    onPageChanged: (
-                      index,
-                      reason,
-                    ) {
-                      setState(() {
-                        currentIndex = index;
-                        pageController = PageController(initialPage: 0);
-                        if (index > _previousPage) {
-                          log("--------------------------------");
-                          log(index.toString());
-                          log(_previousPage.toString());
-                          log("--------------------------------");
+    return ScreenUtilInit(
+      designSize: const Size(720, 1520),
+      minTextAdapt: true,
+      splitScreenMode: false,
+      builder: (context, child) {
+        return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 1, 34, 50),
+          body: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    CarouselSlider(
+                      carouselController: _controller,
+                      options: CarouselOptions(
+                        scrollDirection: Axis.horizontal,
+                        viewportFraction: 1.0,
+                        enlargeCenterPage: false,
+                        enableInfiniteScroll: false,
+                        scrollPhysics: const ClampingScrollPhysics(),
+                        height: 1400.h,
+                        onPageChanged: (
+                          index,
+                          reason,
+                        ) {
+                          setState(() {
+                            currentIndex = index;
+                            pageController = PageController(initialPage: 0);
+                            if (index > _previousPage) {
+                              log("--------------------------------");
+                              log(index.toString());
+                              log(_previousPage.toString());
+                              log("--------------------------------");
 
-                          isRight = true;
-                          log("Scrolled to the right");
-                        } else if (index < _previousPage) {
-                          isRight = false;
-                          log("Scrolled to the left");
-                        }
-                        _previousPage = index;
-                        // pageController. = index;
-                      });
-                    },
-                  ),
-                  items: onboardingDataList.map((i) {
-                    return Column(
-                      children: [
-                        Expanded(
-                          flex: 8,
-                          child: TopPartStackWidget(
-                            currentIndex: currentIndex,
-                            i: i,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Stack(
-                            children: [
-                              if (i.titleText.contains(
-                                onboardingDataList[currentIndex].titleText,
-                              ))
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: TitleTextWidget(
-                                    titleText: i.titleText,
-                                  ).animate().move(
-                                        begin: Offset(
-                                          isRight ? 500 : -500,
-                                          0,
-                                        ),
-                                        end: const Offset(0, 0),
-                                        delay: 50.ms,
-                                        duration: 800.ms,
-                                        curve: Curves.fastOutSlowIn,
-                                      ),
-                                ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Center(
-                            child: Stack(
-                              children: [
-                                if (i.titleText.contains(
-                                  onboardingDataList[currentIndex].titleText,
-                                ))
-                                  DescriptionTextWidget(
-                                    descriptionText: i.descriptionText,
-                                  ).animate().move(
-                                        begin: Offset(
-                                          isRight ? 500 : -500,
-                                          0,
-                                        ),
-                                        end: const Offset(0, 0),
-                                        delay: 150.ms,
-                                        duration: 800.ms,
-                                        curve: Curves.fastOutSlowIn,
-                                      ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-          ),
-          Positioned.fill(
-            top: 40,
-            right: 15,
-            child: Align(
-              alignment: Alignment.topRight,
-              child: currentIndex != 3
-                  ? SkipButtonWidget(controller: _controller)
-                  : SkipButtonWidget(controller: _controller).animate().fadeOut(
-                        duration: 100.ms,
-                        curve: Curves.easeOut,
+                              isRight = true;
+                              log("Scrolled to the right");
+                            } else if (index < _previousPage) {
+                              isRight = false;
+                              log("Scrolled to the left");
+                            }
+                            _previousPage = index;
+                            // pageController. = index;
+                          });
+                        },
                       ),
-            ),
-          ),
-          Positioned.fill(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            // height: MediaQuery.of(context).size.height * 0.1,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
+                      items: onboardingDataList.map((i) {
+                        return Column(
+                          children: [
+                            Expanded(
+                              flex: 10,
+                              child: TopPartStackWidget(
+                                currentIndex: currentIndex,
+                                i: i,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Stack(
+                                children: [
+                                  if (i.titleText.contains(
+                                    onboardingDataList[currentIndex].titleText,
+                                  ))
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: TitleTextWidget(
+                                        titleText: i.titleText,
+                                      ).animate().move(
+                                            begin: Offset(
+                                              isRight ? 500 : -500,
+                                              0,
+                                            ),
+                                            end: const Offset(0, 0),
+                                            delay: 50.ms,
+                                            duration: 800.ms,
+                                            curve: Curves.fastOutSlowIn,
+                                          ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Stack(
+                                children: [
+                                  if (i.titleText.contains(
+                                    onboardingDataList[currentIndex].titleText,
+                                  ))
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: DescriptionTextWidget(
+                                        descriptionText: i.descriptionText,
+                                      ).animate().move(
+                                            begin: Offset(
+                                              isRight ? 500 : -500,
+                                              0,
+                                            ),
+                                            end: const Offset(0, 0),
+                                            delay: 150.ms,
+                                            duration: 800.ms,
+                                            curve: Curves.fastOutSlowIn,
+                                          ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned.fill(
+                top: 60.h,
+                right: 20.w,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: currentIndex != 3
+                      ? SkipButtonWidget(controller: _controller)
+                      : SkipButtonWidget(controller: _controller)
+                          .animate()
+                          .fadeOut(
+                            duration: 100.ms,
+                            curve: Curves.easeOut,
+                          ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 105.h,
                 child: BottomPartWidget(
                   controller: _controller,
                   currentIndex: currentIndex,
                   pagesCount: pagesCount,
                 ),
-              ),
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -263,74 +268,91 @@ class TopPartStackWidget extends StatelessWidget {
           ),
         ),
         if (currentIndex == 0)
-          const Positioned(
-            top: 100,
-            left: 5,
-            child: Bub1Widget(),
+          Stack(
+            children: [
+              Positioned(
+                top: 200.h,
+                left: 10.w,
+                child: const Bub1Widget(),
+              ),
+              Positioned.fill(
+                top: 120.h,
+                // left: 5,
+                child: const Align(
+                  alignment: Alignment.topCenter,
+                  child: Bub2Widget(),
+                ),
+              ),
+              Positioned(
+                top: 190.h,
+                right: 5.w,
+                child: const Bub3Widget(),
+              ),
+            ],
           ),
-        if (currentIndex == 0)
-          const Positioned.fill(
-            top: 80,
-            // left: 5,
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Bub2Widget(),
-            ),
-          ),
-        if (currentIndex == 0)
-          const Positioned(
-            top: 100,
-            right: 5,
-            child: Bub3Widget(),
+        // if (currentIndex == 0)
+        //   Positioned.fill(
+        //     top: 120.h,
+        //     // left: 5,
+        //     child: const Align(
+        //       alignment: Alignment.topCenter,
+        //       child: Bub2Widget(),
+        //     ),
+        //   ),
+        // if (currentIndex == 0)
+        //   Positioned(
+        //     top: 190.h,
+        //     right: 5.w,
+        //     child: const Bub3Widget(),
+        //   ),
+        if (currentIndex == 1)
+          Positioned(
+            top: 120.h,
+            left: 30.w,
+            child: const Bub4Widget(),
           ),
         if (currentIndex == 1)
-          const Positioned(
-            top: 80,
-            left: 30,
-            child: Bub4Widget(),
-          ),
-        if (currentIndex == 1)
-          const Positioned.fill(
-            top: 250,
-            // left: 0,
-            child: Align(
+          Positioned.fill(
+            top: 480.h,
+            right: 40.w,
+            child: const Align(
               alignment: Alignment.topCenter,
               child: Bub5Widget(),
             ),
           ),
         if (currentIndex == 1)
-          const Positioned.fill(
-            top: 100,
-            // left: 0,
-            child: Align(
+          Positioned.fill(
+            top: 170.h,
+            right: 10.w,
+            child: const Align(
               alignment: Alignment.topRight,
               child: Bub6Widget(),
             ),
           ),
         if (currentIndex == 2)
-          const Positioned.fill(
-            top: 60,
-            left: 60,
-            child: Align(
+          Positioned.fill(
+            top: 120.h,
+            left: 150.w,
+            child: const Align(
               alignment: Alignment.topLeft,
               child: Bub7Widget(),
             ),
           ),
         if (currentIndex == 3)
-          const Positioned.fill(
-            top: 60,
-            left: 10,
-            child: Align(
+          Positioned.fill(
+            top: 120.h,
+            left: 10.w,
+            child: const Align(
               alignment: Alignment.topLeft,
               child: Bub8Widget(),
             ),
           ),
         if (currentIndex == 3)
-          const Positioned.fill(
-            top: 70,
+          Positioned.fill(
+            top: 140.h,
             // left: 10,
-            right: 5,
-            child: Align(
+            right: 10.w,
+            child: const Align(
               alignment: Alignment.topRight,
               child: Bub9Widget(),
             ),
@@ -359,6 +381,7 @@ class BottomPartWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color.fromARGB(255, 1, 34, 50),
+      // color: Colors.red,
       child: Column(
         children: [
           Padding(
@@ -366,8 +389,8 @@ class BottomPartWidget extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                color: Colors.transparent,
-                height: 80,
+                // color: Colors.transparent,
+                // height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -388,10 +411,10 @@ class BottomPartWidget extends StatelessWidget {
                       child: AnimatedSmoothIndicator(
                         activeIndex: currentIndex,
                         count: pagesCount,
-                        effect: const ExpandingDotsEffect(
+                        effect: ExpandingDotsEffect(
                           activeDotColor: Colors.blue,
-                          dotHeight: 10,
-                          spacing: 16,
+                          dotHeight: 5.w,
+                          spacing: 15.h,
                           dotColor: Colors.white,
                         ),
                         onDotClicked: (index) {
@@ -479,13 +502,16 @@ class DescriptionTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      descriptionText,
-      textAlign: TextAlign.center,
-      style: const TextStyle(
-        letterSpacing: 0.5,
-        fontSize: 18,
-        color: Colors.white,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Text(
+        descriptionText,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          letterSpacing: 0.5,
+          fontSize: 35.sp,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -504,10 +530,10 @@ class TitleTextWidget extends StatelessWidget {
     return Text(
       titleText,
       textAlign: TextAlign.center,
-      style: const TextStyle(
+      style: TextStyle(
         fontWeight: FontWeight.w600,
         letterSpacing: 0.5,
-        fontSize: 28,
+        fontSize: 57.sp,
         color: Colors.white,
       ),
     );

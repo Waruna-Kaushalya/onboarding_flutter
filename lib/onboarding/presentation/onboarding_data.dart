@@ -21,17 +21,17 @@ List<OnboardingData> onboardingDataList = [
   OnboardingData(
     bgImage: const AssetImage(StringConstant.image2),
     titleText: StringConstant.title2,
-    descriptionText: StringConstant.description1,
+    descriptionText: StringConstant.description2,
   ),
   OnboardingData(
     bgImage: const AssetImage(StringConstant.image3),
     titleText: StringConstant.title3,
-    descriptionText: StringConstant.description1,
+    descriptionText: StringConstant.description3,
   ),
   OnboardingData(
     bgImage: const AssetImage(StringConstant.image4),
     titleText: StringConstant.title4,
-    descriptionText: StringConstant.description1,
+    descriptionText: StringConstant.description4,
   ),
 ];
 
